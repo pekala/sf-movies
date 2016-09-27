@@ -1,9 +1,12 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
 const shuffle = require('lodash.shuffle');
 
 const rawData = require('./raw-data');
 const getGeocoding = require('./geocoding');
+const getMovieData = require('./movieData');
 
 const saveToFile = items => new Promise((resolve, reject) =>
     fs.writeFile(
@@ -19,6 +22,7 @@ const items = shuffle(rawData)
 
 Promise.resolve(items)
 .then(getGeocoding)
+.then(getMovieData)
 .then(saveToFile)
 .then(() => console.log(`Easy peasy! 🦄`))
 .catch(error => console.log(`Something went wrong 🙊: ${error} ${error.stack}`));
