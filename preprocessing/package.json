@@ -1,0 +1,12 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Maciej Pekala",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.14.0",
+    "lodash.shuffle": "^4.2.0"
+  }
+}
