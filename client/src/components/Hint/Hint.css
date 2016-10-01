@@ -1,0 +1,51 @@
+.Hint {
+    height: 100%;
+}
+
+.Hint--front,
+.Hint--back {
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.Hint--front {
+    background-color: #ccc;
+    font-size: 4em;
+    font-weight: bold;
+    opacity: 0.4;
+    text-transform: uppercase;
+}
+
+.Hint--back {
+    background-color: #ddd;
+}
+
+.Hint--label {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-size: small;
+    font-weight: bold;
+    left: 10px;
+    padding: 4px;
+    position: absolute;
+    top: 10px;
+}
+
+.Hint--value {
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+}
+
+.Hint--image {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}

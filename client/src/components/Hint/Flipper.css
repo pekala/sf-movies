@@ -1,0 +1,33 @@
+.Flipper {
+    perspective: 800px;
+    position: relative;
+}
+
+.Flipper--content {
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    width: 100%;
+}
+
+.is-flipped .Flipper--content {
+    transform: rotateY(180deg);
+}
+
+.Flipper--content > * {
+    backface-visibility: hidden;
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.Flipper--content > :first-child {
+    transform: rotateY(0deg);
+}
+
+.Flipper--content > :last-child {
+    transform: rotateY(180deg);
+}
