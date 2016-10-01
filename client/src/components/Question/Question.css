@@ -1,0 +1,59 @@
+.Question {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.Question--header {
+    display: flex;
+    padding: 0.5em 1em;
+}
+
+.Question--headline {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    font-size: 1.4em;
+}
+
+.Question--timer {
+    font-size: 1.7em;
+    text-align: right;
+}
+
+.Question--points {
+    font-size: 1.2em;
+    text-align: right;
+}
+
+.Question--hints {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: -1em 1em 1em 0;
+}
+
+.Question--hint-wrapper {
+    flex: 0 1 50%;
+    height: 50%;
+    padding: 1em 0 0 1em;
+}
+
+.Question--anwsers {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1em 1em 1em 0;
+}
+
+.Question--anwser-wrapper {
+    flex: 0 1 50%;
+    padding: 1em 0 0 1em;
+}
+
+.Question--anwser {
+    background: #eee;
+    border: none;
+    font-size: 1em;
+    padding: 1em;
+    width: 100%;
+}
