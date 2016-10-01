@@ -13,7 +13,7 @@ const getTMDBConfig = axios.get('https://api.themoviedb.org/3/configuration', {
 const addProfileUrl = item => getTMDBConfig.then(config =>
     Object.assign(item, {
         main_actor: Object.assign(item.main_actor, {
-            profile_url: `${config.secure_base_url}${config.profile_sizes[5]}${item.profile_path}`,
+            profile_url: `${config.secure_base_url}${config.profile_sizes[1]}${item.main_actor.profile_path}`,
             profile_path: undefined,
         })
     })
