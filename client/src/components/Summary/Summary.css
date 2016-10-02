@@ -1,0 +1,28 @@
+.Summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 20px;
+    color: white;
+}
+
+.Summary__positive {
+    background: #6cda6c;
+}
+
+.Summary__negative {
+    background: #f96b61;
+}
+
+.Summary--header {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.Summary--points {
+    font-size: 1.5em;
+}
+
