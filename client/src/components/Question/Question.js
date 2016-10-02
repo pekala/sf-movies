@@ -48,7 +48,7 @@ const Question = ({
         <div className="Question--hints">
             {hints.map(hint =>
                 <div key={hint.value} className="Question--hint-wrapper">
-                    <Hint {...hint} />
+                    <Hint {...hint} questionType={type} />
                 </div>
             )}
         </div>

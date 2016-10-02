@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 import * as types from '../../questions/hintTypes';
+import * as questionTypes from '../../questions/questionTypes';
 import Flipper from './Flipper';
 import './Hint.css';
 
@@ -15,7 +17,8 @@ const typeToLabel = {
 }
 
 const Hint = ({
-    isRevealed,
+    isRevealed = false,
+    questionType,
     type,
     value,
 }) =>
@@ -26,14 +29,20 @@ const Hint = ({
         <div className="Hint--back">
             <div className="Hint--label">{typeToLabel[type]}</div>
             { (type === types.MOVIE_POSTER || type === types.ACTOR_IMAGE)
-                ? <div className="Hint--image" style={{ backgroundImage: `url('${value}')` }} />
+                ? <div
+                    className={classNames('Hint--image', {
+                        'Hint--image__blurred': questionType === questionTypes.MOVIE_TITLE && type === types.MOVIE_POSTER
+                    })}
+                    style={{ backgroundImage: `url('${value}')` }}
+                />
                 : <div className="Hint--value">{value}</div>
             }
         </div>
     </Flipper>;
 
 Hint.propTypes = {
-    isRevealed: PropTypes.bool.isRequired,
+    isRevealed: PropTypes.bool,
+    questionType: PropTypes.oneOf(Object.keys(questionTypes).map(key => questionTypes[key])).isRequired,
     type: PropTypes.oneOf(Object.keys(types).map(key => types[key])).isRequired,
     value: PropTypes.string.isRequired,
 }

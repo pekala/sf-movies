@@ -34,6 +34,7 @@
     padding: 4px;
     position: absolute;
     top: 10px;
+    z-index: 1;
 }
 
 .Hint--value {
@@ -48,4 +49,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+.Hint--image__blurred {
+    filter: blur(5px);
+    background-size: cover;
 }
