@@ -11,12 +11,6 @@
 .Question--headline {
     flex: 1;
 }
-.Question--headline > * {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.4em;
-}
 
 .Question--timer {
     font-size: 1.7em;

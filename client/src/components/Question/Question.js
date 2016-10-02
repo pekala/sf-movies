@@ -1,25 +1,8 @@
 import React, { PropTypes } from 'react';
 import * as types from '../../questions/questionTypes';
-import './Question.css';
 import Hint from '../Hint';
-
-const typeToHeadline = {
-    [types.ACTOR_NAME]: location =>
-        <div>
-            <small>
-                <strong>{location.movieTitle}</strong> was filmed at <strong>{location.movieLocation}</strong>.
-            </small>
-            Guess the actor that starred in it!
-        </div>,
-    [types.LOCATION_NAME]: location => `Guess the place!`,
-    [types.MOVIE_TITLE]: location =>
-        <div>
-            <small>
-                A movie was filmed at <strong>{location.movieLocation}</strong>.
-            </small>
-            Which movie could it be...?
-        </div>,
-}
+import QuestionHeadline from './QuestionHeadline';
+import './Question.css';
 
 const Question = ({
     answers,
@@ -35,7 +18,7 @@ const Question = ({
     <div className="Question">
         <div className="Question--header">
             <div className="Question--headline">
-                {typeToHeadline[type](location)}
+                <QuestionHeadline type={type} {...location} />
             </div>
             <div className="Question--stats">
                 <div className="Question--timer">
@@ -67,12 +50,7 @@ const Question = ({
 Question.propTypes = {
     answers: PropTypes.arrayOf(PropTypes.string),
     hints: PropTypes.array,
-    location: PropTypes.shape({
-        movieTitle: PropTypes.string.isRequired,
-        movieLocation: PropTypes.string.isRequired,
-        address: PropTypes.string.isRequired,
-        geometry: PropTypes.object.isRequired,
-    }).isRequired,
+    location: PropTypes.object.isRequired,
     onAnswer: PropTypes.func.isRequired,
     points: PropTypes.number,
     timeLeft: PropTypes.number,
