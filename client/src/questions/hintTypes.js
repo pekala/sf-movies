@@ -5,4 +5,5 @@ export const MOVIE_GENRES = 'hint/MOVIE_GENRES';
 export const MOVIE_POSTER = 'hint/MOVIE_POSTER';
 export const MOVIE_TAGLINE = 'hint/MOVIE_TAGLINE';
 export const MOVIE_TITLE = 'hint/MOVIE_TITLE';
+export const MOVIE_YEAR = 'hint/MOVIE_YEAR';
 export const PRODUCTION_COMPANY = 'hint/PRODUCTION_COMPANY';

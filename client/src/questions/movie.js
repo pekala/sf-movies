@@ -35,6 +35,12 @@ function getHints(item) {
             value: item.genres.join(' '),
         })
     }
+    if (item.release_year) {
+        hints.push({
+            type: hintTypes.MOVIE_YEAR,
+            value: item.release_year,
+        })
+    }
     return hints;
 }
 

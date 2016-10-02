@@ -14,6 +14,7 @@ const typeToLabel = {
     [types.ACTOR_IMAGE]: 'Actor photo',
     [types.MOVIE_TAGLINE]: 'Tagline',
     [types.MOVIE_GENRES]: 'Genre',
+    [types.MOVIE_YEAR]: 'Year released',
 }
 
 const Hint = ({
