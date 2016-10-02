@@ -62,7 +62,8 @@ const handleAnswer = (state, answer) => {
         question: null,
         result: {
             correct: answer === state.question.answer,
-            points: state.question.points,
+            points: answer ? state.question.points : 0,
+            hasTimedOut: !answer,
         },
     }
 }
@@ -72,9 +73,6 @@ export default function reducer(state, action, payload) {
         case 'INIT':
             return initQuestions();
         case 'TICK':
-            if (state.question.timeLeft === 0) {
-                return changeQuestion(state);
-            }
             return handleQuestionTick(state);
         case 'ANSWER':
             return handleAnswer(state, payload);

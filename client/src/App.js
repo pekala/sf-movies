@@ -9,8 +9,11 @@ class App extends Component {
         super();
         this.state = stateReducer(null, 'INIT');
         window.setInterval(() => {
-            if (this.state.question) {
-                this.setState(state => stateReducer(state, 'TICK'));
+            if (this.state.question && this.state.question.timeLeft) {
+                return this.setState(state => stateReducer(state, 'TICK'));
+            }
+            if (this.state.question && !this.state.question.timeLeft) {
+                return this.onAnswer(null);
             }
         }, 1000);
     }

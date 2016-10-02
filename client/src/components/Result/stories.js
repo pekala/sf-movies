@@ -8,4 +8,7 @@ storiesOf('Result', module)
 ))
 .add('incorrect', () => (
     <Result points={250} />
+))
+.add('timeout', () => (
+    <Result hasTimedOut />
 ));
