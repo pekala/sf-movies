@@ -1,0 +1,25 @@
+.Result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 20px;
+    background: #6cda6c;
+    color: white;
+}
+
+.Result__incorrect {
+    background: #f96b61;
+}
+
+.Result--header {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.Result--points {
+    font-size: 1.5em;
+}
+
