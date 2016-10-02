@@ -1,0 +1,39 @@
+.QuestionIntro {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+.QuestionIntro--header {
+    padding: 1em;
+    font-size: 1.2em;
+}
+.QuestionIntro--headline {
+    margin-bottom: 1em;
+}
+
+.QuestionIntro--map {
+    flex: 1;
+}
+
+.QuestionIntro--fun-fact {
+    padding: 1em;
+    margin: 2em;
+    border-radius: 5px;
+    background-color: rgba(204, 204, 204, 0.64);
+    position: absolute;
+    bottom: 0;
+}
+
+.QuestionIntro--fun-fact::before {
+    content: 'Fun fact!';
+    position: absolute;
+    background: red;
+    color: white;
+    top: -15px;
+    left: -30px;
+    transform: rotate(-30deg);
+    padding: 5px;
+    border-radius: 4px;
+}

@@ -13,6 +13,7 @@ const getActorQuestion = _getActorQuestion.bind(null, actors);
 const getQuestionBase = item => ({
     id: uniqueId('question_'),
     location: {
+        funFact: item.fun_facts,
         movieTitle: item.title,
         movieLocation: item.locations,
         address: item.full_address,
