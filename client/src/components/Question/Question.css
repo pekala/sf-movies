@@ -26,27 +26,20 @@
 }
 
 .Question--hints {
-    display: flex;
     flex: 1;
+}
+
+.Question--anwsers,
+.Question--hints {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     margin: -1em 1em 1em 0;
 }
 
+.Question--anwser-wrapper,
 .Question--hint-wrapper {
     flex: 0 1 50%;
     height: 50%;
-    padding: 1em 0 0 1em;
-}
-
-.Question--anwsers {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -1em 1em 1em 0;
-}
-
-.Question--anwser-wrapper {
-    flex: 0 1 50%;
     padding: 1em 0 0 1em;
 }
 
