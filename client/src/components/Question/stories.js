@@ -9,6 +9,7 @@ storiesOf('Question', module)
     <Question
         type={types.ACTOR_NAME}
         points={300}
+        onAnswer={action('answer')}
         timeLeft={20}
         location={{
             movieTitle: 'Some movie',
@@ -27,6 +28,7 @@ storiesOf('Question', module)
     <Question
         type={types.MOVIE_TITLE}
         points={2000}
+        onAnswer={action('answer')}
         timeLeft={2}
         location={{
             movieTitle: 'Some movie',

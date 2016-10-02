@@ -25,6 +25,7 @@ const Question = ({
     answers,
     hints,
     location,
+    onAnswer,
     points,
     timeLeft,
     type,
@@ -55,7 +56,9 @@ const Question = ({
         <div className="Question--anwsers">
             {answers.map(answer =>
                 <div key={answer} className="Question--anwser-wrapper">
-                    <button className="Question--anwser">{answer}</button>
+                    <button onClick={() => onAnswer(answer)} className="Question--anwser">
+                        {answer}
+                    </button>
                 </div>
             )}
         </div>
@@ -70,6 +73,7 @@ Question.propTypes = {
         address: PropTypes.string.isRequired,
         geometry: PropTypes.object.isRequired,
     }).isRequired,
+    onAnswer: PropTypes.func.isRequired,
     points: PropTypes.number,
     timeLeft: PropTypes.number,
     type: PropTypes.oneOf(Object.keys(types).map(key => types[key])),
