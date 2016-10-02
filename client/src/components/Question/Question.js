@@ -4,15 +4,27 @@ import './Question.css';
 import Hint from '../Hint';
 
 const typeToHeadline = {
-    [types.ACTOR_NAME]: `Guess the actor!`,
-    [types.LOCATION_NAME]: `Guess the place!`,
-    [types.MOVIE_TITLE]: `Which movie could it be...?`,
+    [types.ACTOR_NAME]: location =>
+        <div>
+            <small>
+                <strong>{location.movieTitle}</strong> was filmed at <strong>{location.movieLocation}</strong>.
+            </small>
+            Guess the actor that starred in it!
+        </div>,
+    [types.LOCATION_NAME]: location => `Guess the place!`,
+    [types.MOVIE_TITLE]: location =>
+        <div>
+            <small>
+                A movie was filmed at <strong>{location.movieLocation}</strong>.
+            </small>
+            Which movie could it be...?
+        </div>,
 }
 
 const Question = ({
     answers,
     hints,
-    place,
+    location,
     points,
     timeLeft,
     type,
@@ -22,7 +34,7 @@ const Question = ({
     <div className="Question">
         <div className="Question--header">
             <div className="Question--headline">
-                {typeToHeadline[type]}
+                {typeToHeadline[type](location)}
             </div>
             <div className="Question--stats">
                 <div className="Question--timer">
@@ -52,7 +64,12 @@ const Question = ({
 Question.propTypes = {
     answers: PropTypes.arrayOf(PropTypes.string),
     hints: PropTypes.array,
-    place: PropTypes.object,
+    location: PropTypes.shape({
+        movieTitle: PropTypes.string.isRequired,
+        movieLocation: PropTypes.string.isRequired,
+        address: PropTypes.string.isRequired,
+        geometry: PropTypes.object.isRequired,
+    }).isRequired,
     points: PropTypes.number,
     timeLeft: PropTypes.number,
     type: PropTypes.oneOf(Object.keys(types).map(key => types[key])),
