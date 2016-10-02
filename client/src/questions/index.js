@@ -1,6 +1,7 @@
 import data from '../../../preprocessing/processed-data';
 import shuffle from 'lodash.shuffle';
 import uniq from 'lodash.uniq';
+import uniqueId from 'lodash.uniqueid';
 import _getMovieQuestion from './movie';
 import _getActorQuestion from './actor';
 
@@ -10,6 +11,7 @@ const getMovieQuestion = _getMovieQuestion.bind(null, movies);
 const getActorQuestion = _getActorQuestion.bind(null, actors);
 
 const getQuestionBase = item => ({
+    id: uniqueId('question_'),
     location: {
         movieTitle: item.title,
         movieLocation: item.locations,
