@@ -40,8 +40,9 @@ function getHints(item) {
 
 export default function getQuestion(actors, questionBase, item) {
     return Object.assign({}, questionBase, {
-        type: ACTOR_NAME,
+        answer: item.actor_1,
         answers: shuffle(getAnswers(item, actors)),
-        hints: shuffle(getHints(item))
+        hints: shuffle(getHints(item)),
+        type: ACTOR_NAME,
     })
 }

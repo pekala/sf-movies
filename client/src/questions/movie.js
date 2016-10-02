@@ -40,8 +40,9 @@ function getHints(item) {
 
 export default function getQuestion(movies, questionBase, item) {
     return Object.assign({}, questionBase, {
-        type: MOVIE_TITLE,
+        answer: item.title,
         answers: shuffle(getAnswers(item, movies)),
-        hints: shuffle(getHints(item))
+        hints: shuffle(getHints(item)),
+        type: MOVIE_TITLE,
     })
 }
