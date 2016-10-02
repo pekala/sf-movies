@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Question from './components/Question';
+import QuestionIntro from './components/QuestionIntro';
 import Result from './components/Result';
 import stateReducer from './state-reducer';
 import './App.css';
@@ -12,7 +13,7 @@ class App extends Component {
         super();
         this.state = stateReducer(null, 'INIT');
         window.setInterval(() => {
-            if (this.state.question && this.state.question.timeLeft) {
+            if (this.state.question && this.state.question.timeLeft && !this.state.showingIntro) {
                 return this.setState(state => stateReducer(state, 'TICK'));
             }
             if (this.state.question && !this.state.question.timeLeft) {
@@ -26,15 +27,21 @@ class App extends Component {
             this.setState(state => stateReducer(state, 'RESULT_SHOWN'));
         }, RESULT_DURATION_MS);
     }
+    onReady() {
+        this.setState(state => stateReducer(state, 'READY_CLICKED'));
+    }
     render() {
-        const { question, result } = this.state;
+        const { question, result, showingIntro } = this.state;
         return (
             <div className="App">
-                {question &&
+                {question && !showingIntro &&
                     <Question
                         onAnswer={answer => this.onAnswer(answer)}
                         {...question}
                     />
+                }
+                {question && showingIntro &&
+                    <QuestionIntro onReady={() => this.onReady()} type={question.type} {...question.location} />
                 }
                 {!question && result &&
                     <Result {...result} />

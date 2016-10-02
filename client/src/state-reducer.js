@@ -30,8 +30,30 @@ const handleQuestionTick = state => {
 }
 
 const changeQuestion = state => {
+    const nextQuestion = shuffle(state.questions).filter(question => !question.wasAnswered)[0];
+    return {
+        ...state,
+        question: nextQuestion,
+        showingIntro: true,
+        result: undefined,
+    }
+}
+
+const initQuestions = () => {
+    const questions = getQuestions(9);
+    return changeQuestion({ questions });
+}
+
+const showQuestion = state => {
+    return {
+        ...state,
+        showingIntro: false,
+    }
+}
+
+const handleAnswer = (state, answer) => {
     const questions = state.questions.map(question => {
-        if (question === state.question) {
+        if (question.id === state.question.id) {
             return {
                 ...question,
                 wasAnswered: true,
@@ -39,27 +61,10 @@ const changeQuestion = state => {
         }
         return question;
     })
-    const nextQuestion = shuffle(questions).filter(question => !question.wasAnswered)[0];
-    return {
-        question: nextQuestion,
-        questions,
-        result: undefined,
-    }
-}
-
-const initQuestions = () => {
-    const questions = getQuestions(9);
-    const nextQuestion = shuffle(questions)[0];
-    return {
-        question: nextQuestion,
-        questions,
-    }
-}
-
-const handleAnswer = (state, answer) => {
     return {
         ...state,
         question: null,
+        questions,
         result: {
             correct: answer === state.question.answer,
             points: answer ? state.question.points : 0,
@@ -78,6 +83,8 @@ export default function reducer(state, action, payload) {
             return handleAnswer(state, payload);
         case 'RESULT_SHOWN':
             return changeQuestion(state);
+        case 'READY_CLICKED':
+            return showQuestion(state);
         default:
             return state;
     }
