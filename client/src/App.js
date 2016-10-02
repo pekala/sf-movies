@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Question from './components/Question';
 import QuestionIntro from './components/QuestionIntro';
 import Result from './components/Result';
+import Summary from './components/Summary';
 import stateReducer from './state-reducer';
 import './App.css';
 
@@ -13,10 +14,11 @@ class App extends Component {
         super();
         this.state = stateReducer(null, 'INIT');
         window.setInterval(() => {
-            if (this.state.question && this.state.question.timeLeft && !this.state.showingIntro) {
+            const { question, showingIntro } = this.state;
+            if (question && question.timeLeft && !showingIntro) {
                 return this.setState(state => stateReducer(state, 'TICK'));
             }
-            if (this.state.question && !this.state.question.timeLeft) {
+            if (question && !question.timeLeft) {
                 return this.onAnswer(null);
             }
         }, GAME_TICK_MS);
@@ -31,7 +33,7 @@ class App extends Component {
         this.setState(state => stateReducer(state, 'READY_CLICKED'));
     }
     render() {
-        const { question, result, showingIntro } = this.state;
+        const { question, result, showingIntro, points, gameEnded } = this.state;
         return (
             <div className="App">
                 {question && !showingIntro &&
@@ -45,6 +47,9 @@ class App extends Component {
                 }
                 {!question && result &&
                     <Result {...result} />
+                }
+                {!question && gameEnded &&
+                    <Summary points={points} />
                 }
             </div>
         );

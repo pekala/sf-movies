@@ -31,6 +31,14 @@ const handleQuestionTick = state => {
 
 const changeQuestion = state => {
     const nextQuestion = shuffle(state.questions).filter(question => !question.wasAnswered)[0];
+    if (!nextQuestion) {
+        return {
+            ...state,
+            question: null,
+            gameEnded: true,
+            result: undefined,
+        };
+    }
     return {
         ...state,
         question: nextQuestion,
@@ -39,9 +47,12 @@ const changeQuestion = state => {
     }
 }
 
-const initQuestions = () => {
-    const questions = getQuestions(9);
-    return changeQuestion({ questions });
+const initState = () => {
+    const state = {
+        questions: getQuestions(1),
+        points: 0
+    };
+    return changeQuestion(state);
 }
 
 const showQuestion = state => {
@@ -61,13 +72,16 @@ const handleAnswer = (state, answer) => {
         }
         return question;
     })
+    const points = answer ? state.question.points : 0;
+    const wasCorrect = answer === state.question.answer;
     return {
         ...state,
         question: null,
         questions,
+        points: state.points + points * (wasCorrect ? 1 : -1),
         result: {
-            correct: answer === state.question.answer,
-            points: answer ? state.question.points : 0,
+            correct: wasCorrect,
+            points,
             hasTimedOut: !answer,
         },
     }
@@ -76,7 +90,7 @@ const handleAnswer = (state, answer) => {
 export default function reducer(state, action, payload) {
     switch (action) {
         case 'INIT':
-            return initQuestions();
+            return initState();
         case 'TICK':
             return handleQuestionTick(state);
         case 'ANSWER':
