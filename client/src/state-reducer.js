@@ -43,6 +43,7 @@ const changeQuestion = state => {
     return {
         question: nextQuestion,
         questions,
+        result: undefined,
     }
 }
 
@@ -55,15 +56,30 @@ const initQuestions = () => {
     }
 }
 
-export default function reducer(state, action) {
+const handleAnswer = (state, answer) => {
+    return {
+        ...state,
+        question: null,
+        result: {
+            correct: answer === state.question.answer,
+            points: state.question.points,
+        },
+    }
+}
+
+export default function reducer(state, action, payload) {
     switch (action) {
+        case 'INIT':
+            return initQuestions();
         case 'TICK':
             if (state.question.timeLeft === 0) {
                 return changeQuestion(state);
             }
             return handleQuestionTick(state);
-        case 'INIT':
-            return initQuestions();
+        case 'ANSWER':
+            return handleAnswer(state, payload);
+        case 'RESULT_SHOWN':
+            return changeQuestion(state);
         default:
             return state;
     }
