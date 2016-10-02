@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf, action, linkTo } from '@kadira/storybook';
+import * as types from '../../questions/questionTypes';
+import * as types from '../../questions/hintTypes';
 import Question from './Question';
-import * as types from './types';
-import * as hintTypes from '../Hint/types';
 
 storiesOf('Question', module)
 .add('default', () => (

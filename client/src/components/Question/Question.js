@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import * as types from './types';
+import * as types from '../../questions/questionTypes';
 import './Question.css';
 import Hint from '../Hint';
 

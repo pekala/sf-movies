@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action, linkTo } from '@kadira/storybook';
+import * as types from '../../questions/hintTypes';
 import Hint from './Hint';
-import * as types from './types';
 
 storiesOf('Hint', module)
 .add('movie title', () => (

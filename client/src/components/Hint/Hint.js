@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import * as types from './types';
+import * as types from '../../questions/hintTypes';
 import Flipper from './Flipper';
 import './Hint.css';
 
@@ -10,6 +10,8 @@ const typeToLabel = {
     [types.PRODUCTION_COMPANY]: 'Production company',
     [types.MOVIE_POSTER]: 'Movie poster',
     [types.ACTOR_IMAGE]: 'Actor photo',
+    [types.MOVIE_TAGLINE]: 'Tagline',
+    [types.MOVIE_GENRES]: 'Genre',
 }
 
 const Hint = ({
