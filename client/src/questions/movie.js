@@ -48,7 +48,7 @@ export default function getQuestion(movies, questionBase, item) {
     return Object.assign({}, questionBase, {
         answer: item.title,
         answers: shuffle(getAnswers(item, movies)),
-        hints: shuffle(getHints(item)),
+        hints: shuffle(getHints(item)).slice(0, 4),
         type: MOVIE_TITLE,
     })
 }

@@ -42,7 +42,7 @@ export default function getQuestion(actors, questionBase, item) {
     return Object.assign({}, questionBase, {
         answer: item.actor_1,
         answers: shuffle(getAnswers(item, actors)),
-        hints: shuffle(getHints(item)),
+        hints: shuffle(getHints(item)).slice(0, 4),
         type: ACTOR_NAME,
     })
 }
