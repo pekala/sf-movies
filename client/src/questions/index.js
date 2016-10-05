@@ -26,7 +26,7 @@ const getQuestionBase = item => ({
 });
 
 export default function getQuestions(count) {
-    return shuffle(data).slice(0, count + 1).map(item => {
+    return shuffle(data).slice(0, count).map(item => {
         if (Math.random() > 0.5) {
             return getMovieQuestion(getQuestionBase(item), item);
         }
