@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import randomColor from 'randomcolor';
 import classNames from 'classnames';
-import { Textfit } from 'react-textfit';
 import * as types from '../../questions/hintTypes';
 import * as questionTypes from '../../questions/questionTypes';
 import Flipper from './Flipper';
