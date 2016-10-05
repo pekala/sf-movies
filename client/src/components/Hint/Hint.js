@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import randomColor from 'randomcolor';
 import classNames from 'classnames';
+import { Textfit } from 'react-textfit';
 import * as types from '../../questions/hintTypes';
 import * as questionTypes from '../../questions/questionTypes';
 import Flipper from './Flipper';
@@ -15,6 +17,16 @@ const typeToLabel = {
     [types.MOVIE_TAGLINE]: 'Tagline',
     [types.MOVIE_GENRES]: 'Genre',
     [types.MOVIE_YEAR]: 'Year released',
+};
+
+const getMode = type => {
+    switch(type) {
+        case types.MOVIE_POSTER:
+        case types.ACTOR_IMAGE:
+            return 'image';
+        default:
+            return 'text';
+    }
 }
 
 const Hint = ({
@@ -22,24 +34,36 @@ const Hint = ({
     questionType,
     type,
     value,
-}) =>
-    <Flipper className="Hint" isFlipped={isRevealed}>
-        <div className="Hint--front">
-            Hint
-        </div>
-        <div className="Hint--back">
-            <div className="Hint--label">{typeToLabel[type]}</div>
-            { (type === types.MOVIE_POSTER || type === types.ACTOR_IMAGE)
-                ? <div
-                    className={classNames('Hint--image', {
-                        'Hint--image__blurred': questionType === questionTypes.MOVIE_TITLE && type === types.MOVIE_POSTER
-                    })}
-                    style={{ backgroundImage: `url('${value}')` }}
-                />
-                : <div className="Hint--value">{value}</div>
-            }
-        </div>
-    </Flipper>;
+}) => {
+    const mode = getMode(type);
+    return (
+        <Flipper className="Hint" isFlipped={isRevealed}>
+            <div className="Hint--front">
+                Hint
+            </div>
+            <div className={classNames('Hint--back', {
+                'Hint--back__smallText': mode === 'text' && value.length > 50,
+                'Hint--back__largeText': mode === 'text' && value.length < 20,
+            })}>
+                <div className="Hint--label" style={{ backgroundColor: randomColor({ luminosity: 'bright', seed: type }) }}>
+                    {typeToLabel[type]}
+                </div>
+                { mode === 'image' &&
+                    <div
+                        className={classNames('Hint--image', {
+                            'Hint--image__blurred': questionType === questionTypes.MOVIE_TITLE && type === types.MOVIE_POSTER,
+                            'Hint--image__round': type === types.ACTOR_IMAGE,
+                        })}
+                        style={{ backgroundImage: `url('${value}')` }}
+                    />
+                }
+                { mode === 'text' &&
+                    value
+                }
+            </div>
+        </Flipper>
+    );
+};
 
 Hint.propTypes = {
     isRevealed: PropTypes.bool,

@@ -1,1 +1,26 @@
+.page-enter, .page-leave {
+    position: absolute;
+}
 
+.page-enter {
+    left: 100vw;
+}
+
+.page-enter.page-enter-active {
+    animation: moveToLeft 500ms ease-in-out both;
+}
+
+.page-leave {
+    left: 0;
+    z-index: 100;
+}
+
+.page-leave.page-leave-active {
+    animation: moveToLeft 500ms ease-in-out both;
+    animation-delay: 150ms;
+}
+
+@keyframes moveToLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}

@@ -1,12 +1,14 @@
 .Summary {
+    align-items: center;
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    font-family: 'Atma', cursive;
     height: 100vh;
+    justify-content: center;
     padding: 20px;
-    color: white;
+    text-align: center;
+    width: 100vw;
 }
 
 .Summary__positive {

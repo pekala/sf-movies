@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionReplace from 'react-addons-css-transition-group';
 import Question from './components/Question';
 import QuestionIntro from './components/QuestionIntro';
 import Result from './components/Result';
@@ -34,23 +35,39 @@ class App extends Component {
     }
     render() {
         const { question, result, showingIntro, points, gameEnded } = this.state;
+        let visibleComponent;
+        if (question && !showingIntro) {
+            visibleComponent = (
+                <Question
+                    key="question"
+                    onAnswer={answer => this.onAnswer(answer)}
+                    {...question}
+                />
+            );
+        } else if (question && showingIntro) {
+            visibleComponent = (
+                <QuestionIntro
+                    key="questionIntro"
+                    onReady={() => this.onReady()}
+                    type={question.type}
+                    {...question.location}
+                />
+            );
+        } else if (!question && result && !gameEnded) {
+            visibleComponent = <Result key="result" {...result} />;
+        } else if (!question && gameEnded) {
+            visibleComponent = <Summary key="summary" points={points} />;
+        }
         return (
             <div className="App">
-                {question && !showingIntro &&
-                    <Question
-                        onAnswer={answer => this.onAnswer(answer)}
-                        {...question}
-                    />
-                }
-                {question && showingIntro &&
-                    <QuestionIntro onReady={() => this.onReady()} type={question.type} {...question.location} />
-                }
-                {!question && result &&
-                    <Result {...result} />
-                }
-                {!question && gameEnded &&
-                    <Summary points={points} />
-                }
+                <ReactCSSTransitionReplace
+                    component="div"
+                    transitionName="page"
+                    transitionEnterTimeout={650}
+                    transitionLeaveTimeout={650}
+                >
+                    {visibleComponent}
+                </ReactCSSTransitionReplace>
             </div>
         );
     }

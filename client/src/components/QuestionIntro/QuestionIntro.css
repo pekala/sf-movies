@@ -2,38 +2,89 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
     position: relative;
+    background-color: #194a57;
 }
 
 .QuestionIntro--header {
     padding: 1em;
-    font-size: 1.2em;
-}
-.QuestionIntro--headline {
-    margin-bottom: 1em;
+    font-size: 1.3em;
+    font-family: 'Lato', sans-serif;
+    color: white;
 }
 
 .QuestionIntro--map {
+    width: 100%;
+    height: 100%;
+    animation: fadein 1.5s;
+    animation-name: fadein;
+    animation-duration: 1s;
+}
+
+.QuestionIntro-map-wrapper {
     flex: 1;
+    background-size: 100%;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    50%  { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .QuestionIntro--fun-fact {
     padding: 1em;
     margin: 2em;
     border-radius: 5px;
-    background-color: rgba(204, 204, 204, 0.64);
+    background-color: rgba(123, 183, 250, 1);
+    font-family: 'Lato', sans-serif;
+    color: white;
     position: absolute;
     bottom: 0;
+    animation-name: bounceInUp;
+    animation-delay: 1.5s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
 }
 
 .QuestionIntro--fun-fact::before {
     content: 'Fun fact!';
     position: absolute;
-    background: red;
-    color: white;
+    font-family: 'Lato', sans-serif;
+    background: rgba(123, 183, 250, 1);
+    font-weight: bold;
     top: -15px;
-    left: -30px;
-    transform: rotate(-30deg);
+    left: 0;
     padding: 5px;
     border-radius: 4px;
+}
+
+
+@keyframes bounceInUp {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    from {
+        opacity: 0;
+        transform: translate3d(0, 3000px, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0, -20px, 0);
+    }
+
+    75% {
+        transform: translate3d(0, 10px, 0);
+    }
+
+    90% {
+        transform: translate3d(0, -5px, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
 }

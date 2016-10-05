@@ -1,13 +1,15 @@
 .Result {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    height: 100vh;
-    padding: 20px;
     background: #6cda6c;
     color: white;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Atma', cursive;
+    height: 100vh;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    width: 100vw;
 }
 
 .Result__incorrect {

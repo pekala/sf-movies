@@ -2,18 +2,39 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
 }
-.Question--header {
+
+.Question--header-row {
     display: flex;
-    padding: 0.5em 1em;
+}
+
+.Question--question {
+    font-size: calc(25px + 5 * ((100vw - 400px) / 200));
+    font-family: 'Atma', sans-serif;
+    line-height: 1.1;
+    color: white;
+    padding: 10px;
 }
 
 .Question--headline {
     flex: 1;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    color: white;
+    font-size: 1.2em;
+}
+
+.Question--stats {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: 'Atma', sans-serif;
+    line-height: 1.1;
+    padding: 10px;
 }
 
 .Question--timer {
-    font-size: 1.7em;
+    font-size: 2em;
     text-align: right;
 }
 
@@ -24,26 +45,37 @@
 
 .Question--hints {
     flex: 1;
-}
-
-.Question--anwsers,
-.Question--hints {
     display: flex;
-    flex-wrap: wrap;
-    margin: -1em 1em 1em 0;
+    flex-direction: column;
 }
 
-.Question--anwser-wrapper,
+.Question--answers-row,
+.Question--hints-row {
+    display: flex;
+    flex: 1;
+}
+
+.Question--answers,
+.Question--hints {
+    padding: 0 10px 10px 0;
+}
+
+.Question--answers {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.Question--answer-wrapper,
 .Question--hint-wrapper {
     flex: 0 1 50%;
-    height: 50%;
-    padding: 1em 0 0 1em;
+    padding: 10px 0 0 10px;
 }
 
-.Question--anwser {
-    background: #eee;
+.Question--answer {
+    background: rgba(255, 255, 255, 0.3);
+    font-family: 'Atma', sans-serif;
+    color: white;
     border: none;
-    font-size: 1em;
-    padding: 1em;
+    padding: 0.5em;
     width: 100%;
+    height: 100%;
 }

@@ -1,8 +1,28 @@
 import React, { PropTypes } from 'react';
+import { Textfit } from 'react-textfit';
 import * as types from '../../questions/questionTypes';
 import Hint from '../Hint';
-import QuestionHeadline from './QuestionHeadline';
+import QuestionHeadline, { typeToQuestion } from './QuestionHeadline';
 import './Question.css';
+
+const typeToColor = {
+    [types.ACTOR_NAME]: '#f68dbb',
+    [types.MOVIE_TITLE]: '#0ac2d2',
+};
+
+const WrappedAnswer = ({ answer, onClick }) =>
+    <div className="Question--answer-wrapper">
+        <button onClick={() => onClick(answer)} className="Question--answer">
+            <Textfit mode="single" max={25}>
+                {answer}
+            </Textfit>
+        </button>
+    </div>;
+
+const WrappedHint = ({ hint, questionType }) =>
+    <div className="Question--hint-wrapper">
+        <Hint {...hint} questionType={questionType} />
+    </div>;
 
 const Question = ({
     answers,
@@ -15,35 +35,48 @@ const Question = ({
     wasAnswered,
     wasAnsweredCorrectly,
 }) =>
-    <div className="Question">
+    <div className="Question" style={{ backgroundColor: typeToColor[type] }}>
         <div className="Question--header">
-            <div className="Question--headline">
-                <QuestionHeadline type={type} {...location} />
+            <div className="Question--header-row">
+                <div className="Question--headline">
+                    <QuestionHeadline type={type} {...location} />
+                </div>
+                <div className="Question--stats">
+                    <div className="Question--timer">
+                        {timeLeft}s
+                    </div>
+                    <div className="Question--points">
+                        {points} points
+                    </div>
+                </div>
             </div>
-            <div className="Question--stats">
-                <div className="Question--timer">
-                    {timeLeft}s
-                </div>
-                <div className="Question--points">
-                    {points} points
-                </div>
+            <div className="Question--header-row">
+                <div className="Question--question">{typeToQuestion[type]}</div>
             </div>
         </div>
         <div className="Question--hints">
-            {hints.map(hint =>
-                <div key={hint.value} className="Question--hint-wrapper">
-                    <Hint {...hint} questionType={type} />
-                </div>
-            )}
+            <div className="Question--hints-row">
+                {hints.slice(0, 2).map(hint =>
+                    <WrappedHint key={hint.value} hint={hint} questionType={type} />
+                )}
+            </div>
+            <div className="Question--hints-row">
+                {hints.slice(2, 4).map(hint =>
+                    <WrappedHint key={hint.value} hint={hint} questionType={type} />
+                )}
+            </div>
         </div>
-        <div className="Question--anwsers">
-            {answers.map(answer =>
-                <div key={answer} className="Question--anwser-wrapper">
-                    <button onClick={() => onAnswer(answer)} className="Question--anwser">
-                        {answer}
-                    </button>
-                </div>
-            )}
+        <div className="Question--answers">
+            <div className="Question--answers-row">
+                {answers.slice(0, 2).map(answer =>
+                    <WrappedAnswer key={answer} onClick={onAnswer} answer={answer} />
+                )}
+            </div>
+            <div className="Question--answers-row">
+                {answers.slice(2, 4).map(answer =>
+                    <WrappedAnswer key={answer} onClick={onAnswer} answer={answer} />
+                )}
+            </div>
         </div>
     </div>;
 

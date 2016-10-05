@@ -6,9 +6,10 @@
     "lodash.shuffle": "^4.2.0",
     "lodash.uniq": "^4.5.0",
     "lodash.uniqueid": "^4.0.1",
-    "react-scripts": "0.6.1"
-  },
-  "dependencies": {
+    "randomcolor": "^0.4.4",
+    "react-addons-css-transition-group": "^15.3.2",
+    "react-scripts": "0.6.1",
+    "react-textfit": "^0.1.8",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },

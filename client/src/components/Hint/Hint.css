@@ -13,45 +13,59 @@
 }
 
 .Hint--front {
-    background-color: #ccc;
-    font-size: 4em;
+    font-family: 'Atma', sans-serif;
+    background-color: white;
+    color: #333;
+    font-size: calc( 60px + 12 * ((100vw - 400px) / 200));
     font-weight: bold;
     opacity: 0.4;
     text-transform: uppercase;
 }
 
 .Hint--back {
-    background-color: #ddd;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-family: 'Atma', sans-serif;
+    color: #444;
+    text-align: center;
+    font-size: calc( 20px + 10 * ((100vw - 400px) / 200));
+    line-height: 1.2;
+}
+
+.Hint--back__smallText {
+    font-size: calc( 15px + 2 * ((100vw - 400px) / 200));
+}
+
+.Hint--back__largeText {
+    font-size: calc( 30px + 10 * ((100vw - 400px) / 200));
 }
 
 .Hint--label {
-    background-color: red;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
     border-radius: 5px;
     color: white;
     font-size: small;
     font-weight: bold;
-    left: 10px;
+    left: 2px;
     padding: 4px;
     position: absolute;
-    top: 10px;
+    top: 2px;
     z-index: 1;
-}
-
-.Hint--value {
-    font-size: larger;
-    text-align: center;
-    font-weight: bold;
 }
 
 .Hint--image {
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
 }
 
 .Hint--image__blurred {
     filter: blur(5px);
-    background-size: cover;
+}
+
+.Hint--image__round {
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(30% at 50% 50%);
 }

@@ -3,6 +3,7 @@ import * as types from '../../questions/questionTypes';
 import QuestionHeadline from '../Question/QuestionHeadline';
 import mapStyle from './mapStyle';
 import './QuestionIntro.css';
+import mapBackground from './map.png';
 
 window.googleMapsLoaded = window.googleMapsLoaded || new Promise(resolve => {
     const script = document.createElement('script');
@@ -50,7 +51,15 @@ class QuestionIntro extends Component {
                 <div className="QuestionIntro--header">
                     <QuestionHeadline {...this.props} />
                 </div>
-                <div ref={c => this.map = c} className="QuestionIntro--map" />
+                <div
+                    className="QuestionIntro-map-wrapper"
+                    style={{ backgroundImage: `url('${mapBackground}')` }}
+                >
+                    <div
+                        ref={c => this.map = c}
+                        className="QuestionIntro--map"
+                    />
+                </div>
                 {this.props.funFact &&
                     <div className="QuestionIntro--fun-fact">
                         {this.props.funFact}
