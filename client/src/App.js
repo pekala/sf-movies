@@ -30,6 +30,9 @@ class App extends Component {
             this.setState(state => stateReducer(state, 'RESULT_SHOWN'));
         }, RESULT_DURATION_MS);
     }
+    startAgain() {
+        this.setState(state => stateReducer(state, 'RESTART'));
+    }
     onReady() {
         this.setState(state => stateReducer(state, 'READY_CLICKED'));
     }
@@ -56,7 +59,7 @@ class App extends Component {
         } else if (!question && result && !gameEnded) {
             visibleComponent = <Result key="result" {...result} />;
         } else if (!question && gameEnded) {
-            visibleComponent = <Summary key="summary" points={points} />;
+            visibleComponent = <Summary key="summary" points={points} onStartAgain={() => this.startAgain()} />;
         }
         return (
             <div className="App">

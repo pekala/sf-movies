@@ -43,6 +43,7 @@ const changeQuestion = state => {
         ...state,
         question: nextQuestion,
         showingIntro: true,
+        gameEnded: false,
         result: undefined,
     }
 }
@@ -90,6 +91,7 @@ const handleAnswer = (state, answer) => {
 export default function reducer(state, action, payload) {
     switch (action) {
         case 'INIT':
+        case 'RESTART':
             return initState();
         case 'TICK':
             return handleQuestionTick(state);
