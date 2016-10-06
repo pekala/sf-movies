@@ -57,6 +57,7 @@ class App extends Component {
                     key="questionIntro"
                     onReady={() => this.onReady()}
                     type={question.type}
+                    durationSeconds={question.location.funFact ? 10 : 5}
                     {...question.location}
                 />
             );

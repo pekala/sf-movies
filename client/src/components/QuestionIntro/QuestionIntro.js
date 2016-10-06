@@ -25,7 +25,10 @@ class QuestionIntro extends Component {
         })
     }
     componentDidMount() {
-        window.setTimeout(this.props.onReady, 6000);
+        this.timeout = window.setTimeout(this.props.onReady, this.props.durationSeconds * 1000);
+    }
+    componentWillUnmount() {
+        window.setTimeout(this.timeout);
     }
     componentDidUpdate() {
         if (this.state.mapsLoaded) {
@@ -72,6 +75,7 @@ class QuestionIntro extends Component {
 
 QuestionIntro.propTypes = {
     address: PropTypes.string.isRequired,
+    durationSeconds: PropTypes.string.number,
     funFact: PropTypes.string,
     geometry: PropTypes.object.isRequired,
     movieLocation: PropTypes.string.isRequired,
