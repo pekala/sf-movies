@@ -10,30 +10,37 @@ const typeToColor = {
     [types.MOVIE_TITLE]: '#0ac2d2',
 };
 
-const WrappedAnswer = ({ answer, onClick }) =>
-    <div className="Question--answer-wrapper">
-        <button onClick={() => onClick(answer)} className="Question--answer">
-            <Textfit mode="single" max={25}>
-                {answer}
-            </Textfit>
-        </button>
+const AnswerRow = ({ answers, onClick }) =>
+    <div className="Question--answers-row">
+        {answers.map(answer =>
+            <div key={answer} className="Question--answer-wrapper">
+                <button onClick={() => onClick(answer)} className="Question--answer">
+                    <Textfit mode="single" max={25}>
+                        {answer}
+                    </Textfit>
+                </button>
+            </div>
+        )}
     </div>;
 
-const WrappedHint = ({ hint, questionType }) =>
-    <div className="Question--hint-wrapper">
-        <Hint {...hint} questionType={questionType} />
+const HintRow = ({ hints, questionType, onClick }) =>
+    <div className="Question--hints-row">
+        {hints.map(hint =>
+            <div key={hint.value} className="Question--hint-wrapper">
+                <Hint {...hint} questionType={questionType} onClick={onClick} />
+            </div>
+        )}
     </div>;
 
 const Question = ({
     answers,
     hints,
     location,
-    onAnswer,
+    onAnswerClicked,
+    onHintClicked,
     points,
     timeLeft,
     type,
-    wasAnswered,
-    wasAnsweredCorrectly,
 }) =>
     <div className="Question" style={{ backgroundColor: typeToColor[type] }}>
         <div className="Question--header">
@@ -55,28 +62,12 @@ const Question = ({
             </div>
         </div>
         <div className="Question--hints">
-            <div className="Question--hints-row">
-                {hints.slice(0, 2).map(hint =>
-                    <WrappedHint key={hint.value} hint={hint} questionType={type} />
-                )}
-            </div>
-            <div className="Question--hints-row">
-                {hints.slice(2, 4).map(hint =>
-                    <WrappedHint key={hint.value} hint={hint} questionType={type} />
-                )}
-            </div>
+            <HintRow hints={hints.slice(0, 2)} questionType={type} onClick={onHintClicked} />
+            <HintRow hints={hints.slice(2, 4)} questionType={type} onClick={onHintClicked} />
         </div>
         <div className="Question--answers">
-            <div className="Question--answers-row">
-                {answers.slice(0, 2).map(answer =>
-                    <WrappedAnswer key={answer} onClick={onAnswer} answer={answer} />
-                )}
-            </div>
-            <div className="Question--answers-row">
-                {answers.slice(2, 4).map(answer =>
-                    <WrappedAnswer key={answer} onClick={onAnswer} answer={answer} />
-                )}
-            </div>
+            <AnswerRow answers={answers.slice(0, 2)} onClick={onAnswerClicked} />
+            <AnswerRow answers={answers.slice(2, 4)} onClick={onAnswerClicked} />
         </div>
     </div>;
 
@@ -84,12 +75,11 @@ Question.propTypes = {
     answers: PropTypes.arrayOf(PropTypes.string),
     hints: PropTypes.array,
     location: PropTypes.object.isRequired,
-    onAnswer: PropTypes.func.isRequired,
+    onAnswerClicked: PropTypes.func.isRequired,
+    onHintClicked: PropTypes.func.isRequired,
     points: PropTypes.number,
     timeLeft: PropTypes.number,
     type: PropTypes.oneOf(Object.keys(types).map(key => types[key])),
-    wasAnswered: PropTypes.bool,
-    wasAnsweredCorrectly: PropTypes.bool,
 }
 
 export default Question;

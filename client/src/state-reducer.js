@@ -5,17 +5,17 @@ const handleQuestionTick = state => {
     let hints = state.question.hints;
     let points = state.question.points;
     if (state.question.timeLeft % 5 === 0) {
-        points /= 2;
-        let hintToUnlock = shuffle(hints).find(hint => !hint.isRevealed);
+        points = Math.floor(points / 2);
+        const hintToUnlock = shuffle(hints).find(hint => !hint.isRevealed);
         hints = hints.map(hint => {
             if (hint === hintToUnlock) {
                 return {
                     ...hint,
                     isRevealed: true,
-                }
+                };
             }
             return hint;
-        })
+        });
     }
 
     return {
@@ -72,7 +72,7 @@ const handleAnswer = (state, answer) => {
             };
         }
         return question;
-    })
+    });
     const points = answer ? state.question.points : 0;
     const wasCorrect = answer === state.question.answer;
     return {
@@ -89,6 +89,27 @@ const handleAnswer = (state, answer) => {
     }
 }
 
+const revealHint = (state, hintId) => {
+    const hints = state.question.hints.map(hint => {
+        if (hint.id === hintId) {
+            return {
+                ...hint,
+                isRevealed: true,
+            };
+        }
+        return hint;
+    });
+
+    return {
+        ...state,
+        question: {
+            ...state.question,
+            hints,
+            points: Math.floor(state.question.points / 2),
+        }
+    };
+}
+
 export default function reducer(state, action, payload) {
     switch (action) {
         case 'INIT':
@@ -102,6 +123,8 @@ export default function reducer(state, action, payload) {
             return changeQuestion(state);
         case 'READY_CLICKED':
             return showQuestion(state);
+        case 'HINT_REQUESTED':
+            return revealHint(state, payload);
         default:
             return state;
     }

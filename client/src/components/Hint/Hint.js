@@ -29,15 +29,17 @@ const getMode = type => {
 }
 
 const Hint = ({
+    onClick,
     isRevealed = false,
     questionType,
     type,
+    id,
     value,
 }) => {
     const mode = getMode(type);
     return (
         <Flipper className="Hint" isFlipped={isRevealed}>
-            <div className="Hint--front">
+            <div className="Hint--front" onClick={() => onClick(id)}>
                 Hint
             </div>
             <div className={classNames('Hint--back', {
@@ -65,7 +67,9 @@ const Hint = ({
 };
 
 Hint.propTypes = {
+    id: PropTypes.string.isRequired,
     isRevealed: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
     questionType: PropTypes.oneOf(Object.keys(questionTypes).map(key => questionTypes[key])).isRequired,
     type: PropTypes.oneOf(Object.keys(types).map(key => types[key])).isRequired,
     value: PropTypes.string.isRequired,

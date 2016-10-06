@@ -30,6 +30,9 @@ class App extends Component {
             this.setState(state => stateReducer(state, 'RESULT_SHOWN'));
         }, RESULT_DURATION_MS);
     }
+    onHintRequested(hintId) {
+        this.setState(state => stateReducer(state, 'HINT_REQUESTED', hintId));
+    }
     startAgain() {
         this.setState(state => stateReducer(state, 'RESTART'));
     }
@@ -43,7 +46,8 @@ class App extends Component {
             visibleComponent = (
                 <Question
                     key="question"
-                    onAnswer={answer => this.onAnswer(answer)}
+                    onAnswerClicked={answer => this.onAnswer(answer)}
+                    onHintClicked={hintId => this.onHintRequested(hintId)}
                     {...question}
                 />
             );
