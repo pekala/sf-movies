@@ -1,4 +1,5 @@
 import shuffle from 'lodash.shuffle';
+import uniqueId from 'lodash.uniqueid';
 import { MOVIE_TITLE } from './questionTypes';
 import * as hintTypes from './hintTypes';
 
@@ -41,14 +42,16 @@ function getHints(item) {
             value: item.release_year,
         })
     }
-    return hints;
+
+    return hints.map(hint => ({ ...hint, id: uniqueId('hint_') }));
 }
 
 export default function getQuestion(movies, questionBase, item) {
-    return Object.assign({}, questionBase, {
+    return {
+        ...questionBase,
         answer: item.title,
         answers: shuffle(getAnswers(item, movies)),
         hints: shuffle(getHints(item)).slice(0, 4),
         type: MOVIE_TITLE,
-    })
+    };
 }

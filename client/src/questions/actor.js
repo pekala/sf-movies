@@ -1,4 +1,5 @@
 import shuffle from 'lodash.shuffle';
+import uniqueId from 'lodash.uniqueid';
 import { ACTOR_NAME } from './questionTypes';
 import * as hintTypes from './hintTypes';
 
@@ -35,14 +36,16 @@ function getHints(item) {
             value: item.main_actor.profile_url,
         })
     }
-    return hints;
+
+    return hints.map(hint => ({ ...hint, id: uniqueId('hint_') }));
 }
 
 export default function getQuestion(actors, questionBase, item) {
-    return Object.assign({}, questionBase, {
+    return {
+        ...questionBase,
         answer: item.actor_1,
         answers: shuffle(getAnswers(item, actors)),
         hints: shuffle(getHints(item)).slice(0, 4),
         type: ACTOR_NAME,
-    })
+    };
 }
