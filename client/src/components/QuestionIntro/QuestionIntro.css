@@ -35,6 +35,25 @@
     to   { opacity: 1; }
 }
 
+.QuestionIntro--skip {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+.QuestionIntro--skip button {
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Atma', sans-serif;
+    color: #555;
+    border: none;
+    font-size: 1.4em;
+    border-radius: 5px;
+    padding: 0.5em;
+    width: 100%;
+}
+
 .QuestionIntro--fun-fact {
     padding: 1em;
     margin: 2em;
@@ -43,7 +62,7 @@
     font-family: 'Lato', sans-serif;
     color: white;
     position: absolute;
-    bottom: 0;
+    bottom: 3em;
     animation-name: bounceInUp;
     animation-delay: 1.5s;
     animation-duration: 1s;
@@ -53,12 +72,12 @@
 .QuestionIntro--fun-fact::before {
     content: 'Fun fact!';
     position: absolute;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Atma', sans-serif;
     background: rgba(123, 183, 250, 1);
     font-weight: bold;
-    top: -15px;
+    top: -30px;
     left: 0;
-    padding: 5px;
+    padding: 10px;
     border-radius: 4px;
 }
 

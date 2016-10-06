@@ -63,6 +63,9 @@ class QuestionIntro extends Component {
                         className="QuestionIntro--map"
                     />
                 </div>
+                <div className="QuestionIntro--skip">
+                    <button onClick={this.props.onReady}>Skip</button>
+                </div>
                 {this.props.funFact &&
                     <div className="QuestionIntro--fun-fact">
                         {this.props.funFact}
