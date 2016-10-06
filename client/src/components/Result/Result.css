@@ -16,8 +16,13 @@
     background: #f96b61;
 }
 
+.Result--answer {
+    font-size: 1.2em;
+}
+
 .Result--header {
     font-size: 3em;
+    line-height: 1.2;
     margin-bottom: 0.5em;
 }
 

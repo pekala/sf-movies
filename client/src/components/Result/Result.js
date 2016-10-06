@@ -27,7 +27,12 @@ const timeoutMessages = [
 
 const getRandom = messages => messages[Math.floor(Math.random() * messages.length)];
 
-const Question = ({ correct, points, hasTimedOut }) =>
+const Question = ({
+    answer,
+    correct,
+    hasTimedOut,
+    points,
+}) =>
     <div className={classNames('Result', { 'Result__incorrect': !correct })}>
         <div className="Result--header">
             {correct
@@ -37,6 +42,11 @@ const Question = ({ correct, points, hasTimedOut }) =>
                     : getRandom(incorrectMessages)
             }
         </div>
+        {!correct &&
+            <div className="Result--answer">
+                It was actually <strong>{answer}</strong>.
+            </div>
+        }
         {!hasTimedOut &&
             <div className="Result--points">
                 You {correct ? 'get' : 'lose'} {points} points.
@@ -45,9 +55,10 @@ const Question = ({ correct, points, hasTimedOut }) =>
     </div>;
 
 Question.propTypes = {
+    answer: PropTypes.string.isRequired,
     correct: PropTypes.bool.isRequired,
-    points: PropTypes.number.isRequired,
     hasTimedOut: PropTypes.bool.isRequired,
+    points: PropTypes.number.isRequired,
 }
 
 export default Question;

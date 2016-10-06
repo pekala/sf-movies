@@ -82,6 +82,7 @@ const handleAnswer = (state, answer) => {
         points: state.points + points * (wasCorrect ? 1 : -1),
         result: {
             correct: wasCorrect,
+            answer: state.question.answer,
             points,
             hasTimedOut: !answer,
         },
