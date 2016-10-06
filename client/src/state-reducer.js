@@ -50,7 +50,7 @@ const changeQuestion = state => {
 
 const initState = () => {
     const state = {
-        questions: getQuestions(1),
+        questions: getQuestions(9),
         points: 0
     };
     return changeQuestion(state);
