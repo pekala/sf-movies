@@ -1,5 +1,5 @@
 .Hint {
-    height: 100%;
+    flex: 1;
 }
 
 .Hint--front,
@@ -16,7 +16,7 @@
     font-family: 'Atma', sans-serif;
     background-color: white;
     color: #333;
-    font-size: calc( 60px + 12 * ((100vw - 400px) / 200));
+    font-size: calc(60px + 12 * ((100vw - 400px) / 200));
     font-weight: bold;
     opacity: 0.4;
     text-transform: uppercase;
@@ -27,16 +27,16 @@
     font-family: 'Atma', sans-serif;
     color: #444;
     text-align: center;
-    font-size: calc( 20px + 10 * ((100vw - 400px) / 200));
+    font-size: calc(20px + 10 * ((100vw - 400px) / 200));
     line-height: 1.2;
 }
 
 .Hint--back__smallText {
-    font-size: calc( 15px + 2 * ((100vw - 400px) / 200));
+    font-size: calc(15px + 2 * ((100vw - 400px) / 200));
 }
 
 .Hint--back__largeText {
-    font-size: calc( 30px + 10 * ((100vw - 400px) / 200));
+    font-size: calc(30px + 10 * ((100vw - 400px) / 200));
 }
 
 .Hint--label {

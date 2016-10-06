@@ -5,6 +5,7 @@
 
 .Flipper--content {
     height: 100%;
+    display: flex;
     position: absolute;
     transform-style: preserve-3d;
     transition: transform 0.5s;
