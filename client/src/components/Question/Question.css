@@ -26,21 +26,45 @@
 }
 
 .Question--stats {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
     font-family: 'Atma', sans-serif;
     line-height: 1.1;
     padding: 10px;
+    text-align: right;
+    min-width: 90px;
 }
 
 .Question--timer {
     font-size: 2em;
-    text-align: right;
+}
+
+.Question--timer__late {
+    animation-name: shake;
+    animation-iteration-count: infinite;
+    animation-duration: 800ms;
+    animation-fill-mode: both;
+    display: inline-block;
+}
+
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(3px, 0, 0);
+  }
 }
 
 .Question--points {
     font-size: 1.2em;
-    text-align: right;
 }
 
 .Question--hints {

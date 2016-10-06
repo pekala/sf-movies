@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Textfit } from 'react-textfit';
+import classNames from 'classnames';
 import * as types from '../../questions/questionTypes';
 import Hint from '../Hint';
 import QuestionHeadline, { typeToQuestion } from './QuestionHeadline';
@@ -50,15 +51,15 @@ const Question = ({
                 </div>
                 <div className="Question--stats">
                     <div className="Question--timer">
-                        {timeLeft}s
+                        {timeLeft} <span className={classNames({ 'Question--timer__late': timeLeft <= 5 })}>⏲</span>
                     </div>
                     <div className="Question--points">
-                        {points} points
+                        {points} 💰
                     </div>
                 </div>
             </div>
-            <div className="Question--header-row">
-                <div className="Question--question">{typeToQuestion[type]}</div>
+            <div className="Question--header-row Question--question">
+                {typeToQuestion[type]}
             </div>
         </div>
         <div className="Question--hints">
