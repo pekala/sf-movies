@@ -1,8 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
-const shuffle = require('lodash.shuffle');
-const rawData = require('./raw-data');
+const fetchTMDBData = require('./fetchTMDBData');
 
 const getTMDBConfig = axios.get('https://api.themoviedb.org/3/configuration', {
     params: {
@@ -19,23 +16,14 @@ const addPosterUrl = item => getTMDBConfig.then(config =>
 
 module.exports = function movieData(items) {
     return Promise.all(items.map(item =>
-        axios.get('https://api.themoviedb.org/3/search/movie', {
-            params: {
-                api_key: process.env.TMDB_API_KEY,
-                language: 'en-US',
-                query: item.title,
-                year: item.release_year,
-            }
+        fetchTMDBData('search/movie', {
+            query: item.title,
+            year: item.release_year,
         })
-        .then(response => response.data.results[0].id)
-        .then(movieId => axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
-            params: {
-                api_key: process.env.TMDB_API_KEY,
-                language: 'en-US',
-                append_to_response: 'images',
-            }
+        .then(data => data.results[0].id)
+        .then(movieId => fetchTMDBData(`movie/${movieId}`, {
+            append_to_response: 'images',
         }))
-        .then(response => response.data)
         .then(movieData => Object.assign({}, item, {
             genres: movieData.genres.map(genre => genre.name),
             overview: movieData.overview,
@@ -45,5 +33,14 @@ module.exports = function movieData(items) {
             poster_path: movieData.poster_path,
         }))
         .then(addPosterUrl)
-    ));
+        .catch(error => {
+            console.log(error);
+            console.log(`ERROR for ${item.title}, romoving from data`);
+            return null;
+        })
+    ))
+    .then(items => {
+        console.log('Movie data collected');
+        return items;
+    });
 };

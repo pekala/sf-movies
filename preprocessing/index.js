@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const shuffle = require('lodash.shuffle');
 
-const rawData = require('./raw-data');
+const rawData = require('./processed-data-saved');
 const getGeocoding = require('./geocoding');
 const getMovieData = require('./movieData');
 const getActorData = require('./actorData');
@@ -18,13 +18,17 @@ const saveToFile = items => new Promise((resolve, reject) =>
 );
 
 const items = shuffle(rawData)
-.filter(item => item.locations)
-.slice(0, 10);
+.filter(item => item.locations);
 
 Promise.resolve(items)
 .then(getGeocoding)
 .then(getMovieData)
+.then(movieData => movieData.filter(item => !!item))
 .then(getActorData)
+.then(movieData => movieData.filter(item => !!item))
 .then(saveToFile)
-.then(() => console.log(`Easy peasy! 🦄`))
+.then(() => {
+    console.log(`Easy peasy! 🦄`);
+    process.exit(0);
+})
 .catch(error => console.log(`Something went wrong 🙊: ${error} ${error.stack}`));

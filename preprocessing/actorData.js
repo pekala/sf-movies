@@ -1,8 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
-const shuffle = require('lodash.shuffle');
-const rawData = require('./raw-data');
+const fetchTMDBData = require('./fetchTMDBData');
 
 const getTMDBConfig = axios.get('https://api.themoviedb.org/3/configuration', {
     params: {
@@ -20,15 +17,14 @@ const addProfileUrl = item => getTMDBConfig.then(config =>
 )
 
 module.exports = function actorData(items) {
-    return Promise.all(items.map(item =>
-        axios.get('https://api.themoviedb.org/3/search/person', {
-            params: {
-                api_key: process.env.TMDB_API_KEY,
-                language: 'en-US',
-                query: item.actor_1,
-            }
+    return Promise.all(items.map(item => {
+        if (!item.actor_1) {
+            return Promise.resolve(item);
+        }
+        return fetchTMDBData('search/person', {
+            query: item.actor_1,
         })
-        .then(response => response.data.results[0])
+        .then(data => data.results[0])
         .then(actorData => Object.assign({}, item, {
             main_actor: {
                 name: actorData.name,
@@ -38,5 +34,10 @@ module.exports = function actorData(items) {
             }
         }))
         .then(addProfileUrl)
-    ));
+        .catch(() => item)
+    }))
+    .then(items => {
+        console.log('Actor data collected');
+        return items;
+    });
 };
