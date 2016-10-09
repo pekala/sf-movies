@@ -1,4 +1,4 @@
-import data from '../../../preprocessing/processed-data';
+import data from './data';
 import shuffle from 'lodash.shuffle';
 import uniq from 'lodash.uniq';
 import uniqueId from 'lodash.uniqueid';
