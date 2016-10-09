@@ -17,6 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "deploy": "npm run build && surge -p build -d sf-movie-quiz.surge.sh",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook"
