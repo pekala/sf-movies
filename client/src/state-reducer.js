@@ -112,7 +112,7 @@ const revealHint = (state, hintId) => {
 
 export default function reducer(state, action, payload) {
     switch (action) {
-        case 'INIT':
+        case 'START':
         case 'RESTART':
             return initState();
         case 'TICK':

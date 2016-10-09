@@ -4,6 +4,7 @@ import Question from './components/Question';
 import QuestionIntro from './components/QuestionIntro';
 import Result from './components/Result';
 import Summary from './components/Summary';
+import Intro from './components/Intro';
 import stateReducer from './state-reducer';
 import './App.css';
 
@@ -13,7 +14,10 @@ const RESULT_DURATION_MS = 3000;
 class App extends Component {
     constructor() {
         super();
-        this.state = stateReducer(null, 'INIT');
+        this.state = {};
+    }
+    onStart() {
+        this.setState(state => stateReducer(state, 'START'));
         window.setInterval(() => {
             const { question, showingIntro } = this.state;
             if (question && question.timeLeft && !showingIntro) {
@@ -65,6 +69,8 @@ class App extends Component {
             visibleComponent = <Result key="result" {...result} />;
         } else if (!question && gameEnded) {
             visibleComponent = <Summary key="summary" points={points} onStartAgain={() => this.startAgain()} />;
+        } else if (!question && !gameEnded && !result) {
+            visibleComponent = <Intro key="intro" onStart={() => this.onStart()} />;
         }
         return (
             <div className="App">

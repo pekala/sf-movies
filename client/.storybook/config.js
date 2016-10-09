@@ -6,6 +6,7 @@ function loadStories() {
   require('../src/components/Result/stories');
   require('../src/components/QuestionIntro/stories');
   require('../src/components/Summary/stories');
+  require('../src/components/Intro/stories');
 }
 
 configure(loadStories, module);

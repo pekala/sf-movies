@@ -1,0 +1,36 @@
+.Intro--title {
+    font-family: 'Atma', sans-serif;
+    line-height: 1;
+    text-align: center;
+    padding: 20px;
+    color: #424242;
+}
+
+.Intro--illustrator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 0.7em;
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+.Intro--explanation {
+    font-family: 'Lato', sans-serif;
+    color: #424242;
+    padding: 30px;
+}
+
+.Intro--button  {
+    text-align: center;
+}
+
+.Intro--button button {
+    background-color: #f7a231;
+    font-family: 'Atma', sans-serif;
+    color: #424242;
+    border: none;
+    border-radius: 4px;
+    font-size: 2em;
+    padding: 0.5em;
+}
