@@ -7,8 +7,10 @@
 - `react-textfit` - a quick solution for adjusting font size to container width. It's nice, but slightly buggy, especially when used with flexbox elements.
 - `react-storybook` - I've always used `react-playground` to get an encapsulated dev environement to work on components presentation layer. But `storybook` got a lot of traction recently and I wanted to try it. *CONCULSION* It's a great project with nice API and some handy plugins. I'll probably switch my other projects to it.
 
-## Descoped - possible next steps
+## Limitations
+Although responsive, optimized for mobile screen sizes. Tested mostly on Chrome, and there are certainly some quirks in other browsers.
 
+## Descoped - possible next steps
 - Asking questions about locations that are close to the user
     + requires creating a more advanced data structure for the locations, so that getting a close location doesn't require looping over all 1000+ locations and calculating distance every time.
 - Allow multi-player mode (possibly using [Uber trip experiences API](https://developer.uber.com/docs/trip-experiences) to play with co-passanger)
