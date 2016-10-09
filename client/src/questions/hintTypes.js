@@ -7,3 +7,4 @@ export const MOVIE_TAGLINE = 'hint/MOVIE_TAGLINE';
 export const MOVIE_TITLE = 'hint/MOVIE_TITLE';
 export const MOVIE_YEAR = 'hint/MOVIE_YEAR';
 export const PRODUCTION_COMPANY = 'hint/PRODUCTION_COMPANY';
+export const DIRECTOR_NAME = 'hint/DIRECTOR_NAME';
