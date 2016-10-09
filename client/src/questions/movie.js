@@ -42,6 +42,18 @@ function getHints(item) {
             value: item.release_year,
         })
     }
+    if (item.director) {
+        hints.push({
+            type: hintTypes.DIRECTOR_NAME,
+            value: item.director,
+        })
+    }
+    if (item.actor_2) {
+        hints.push({
+            type: hintTypes.ACTOR_NAME,
+            value: item.actor_2,
+        })
+    }
 
     return hints.map(hint => ({ ...hint, id: uniqueId('hint_') }));
 }

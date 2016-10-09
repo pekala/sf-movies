@@ -30,6 +30,12 @@ function getHints(item) {
             value: item.main_actor.known_for[0],
         })
     }
+    if (item.main_actor.known_for[1]) {
+        hints.push({
+            type: hintTypes.MOVIE_TITLE,
+            value: item.main_actor.known_for[1],
+        })
+    }
     if (item.main_actor.profile_url) {
         hints.push({
             type: hintTypes.ACTOR_IMAGE,

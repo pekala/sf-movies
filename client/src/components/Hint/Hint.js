@@ -7,7 +7,7 @@ import Flipper from './Flipper';
 import './Hint.css';
 
 const typeToLabel = {
-    [types.ACTOR_NAME]: 'Actor name',
+    [types.ACTOR_NAME]: 'Actor',
     [types.LOCATION_NAME]: 'Place',
     [types.MOVIE_TITLE]: 'Movie title',
     [types.PRODUCTION_COMPANY]: 'Production company',
@@ -16,6 +16,7 @@ const typeToLabel = {
     [types.MOVIE_TAGLINE]: 'Tagline',
     [types.MOVIE_GENRES]: 'Genre',
     [types.MOVIE_YEAR]: 'Year released',
+    [types.DIRECTOR_NAME]: 'Director',
 };
 
 const getMode = type => {
