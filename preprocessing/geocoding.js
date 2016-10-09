@@ -10,7 +10,7 @@ module.exports = function geocode(items) {
             geometry: geocodeData.geometry,
             location_types: geocodeData.types,
         }))
-        .catch(() => item)
+        .catch(() => null)
     ))
     .then(items => {
         console.log('Geocoding data collected');

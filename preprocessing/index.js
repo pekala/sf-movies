@@ -22,6 +22,7 @@ const items = shuffle(rawData)
 
 Promise.resolve(items)
 .then(getGeocoding)
+.then(movieData => movieData.filter(item => !!item))
 .then(getMovieData)
 .then(movieData => movieData.filter(item => !!item))
 .then(getActorData)
