@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 6
+cache:
+  directories:
+  - node_modules
+before_install: cd client
+deploy:
+  provider: surge
+  project: ./build/
+  domain: sf-movie-quiz.surge.sh
